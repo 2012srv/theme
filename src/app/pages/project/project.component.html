@@ -1,0 +1,88 @@
+<h1 class="page-heading">Project</h1>
+<div class="custom-card">
+    <div class="step-form-head d-flex justify-content-center mb-5">
+        <ul class="d-flex justify-content-center">
+            <li class="d-flex flex-column align-items-center done">
+                <span class="label mb-3">Name</span>
+                <span class="circle d-flex justify-content-center align-items-center">
+                    1
+                    <i class="fas fa-check"></i>
+                </span>
+            </li>
+            <li class="d-flex flex-column align-items-center">
+                <span class="label mb-3">Contact</span>
+                <span class="circle d-flex justify-content-center align-items-center">
+                    2
+                    <i class="fas fa-check"></i>
+                </span>
+            </li>
+            <li class="d-flex flex-column align-items-center">
+                <span class="label mb-3">Birth</span>
+                <span class="circle d-flex justify-content-center align-items-center">
+                    3
+                    <i class="fas fa-check"></i>
+                </span>
+            </li>
+            <li class="d-flex flex-column align-items-center">
+                <span class="label mb-3">Submit</span>
+                <span class="circle d-flex justify-content-center align-items-center">
+                    4
+                    <i class="fas fa-check"></i>
+                </span>
+            </li>
+        </ul>    
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label class="col-form-label">Field 1</label>
+            <input class="form-control full-width mb-4" autocomplete="off" type="text" placeholder="">
+        </div>
+        <div class="col-6">
+            <label class="col-form-label">Field 2</label>
+            <ng-select class="custom-ng-select mb-4" placeholder="Select">
+                <ng-option *ngFor="let item of items" [value]="item.value">{{item.label}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="col-6">
+            <label class="col-form-label">Field 3</label>
+            <textarea class="form-control full-width mb-4" autocomplete="off" placeholder=""></textarea>
+        </div>
+        <div class="col-6">
+            <div class="d-flex align-items-center pt-5">
+                <label class="custom-checkbox" for="exampleCheck1">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <i class="far fa-square not-checked"></i>
+                    <i class="far fa-check-square checked"></i>
+                </label>    
+                <label class="form-check-label pl-3" for="exampleCheck1">Check me out</label>
+            </div>
+            <div class="d-flex align-items-center pt-5">
+                <label class="custom-checkbox" for="exampleRadio1">
+                    <input name="sss" type="radio" class="form-check-input" id="exampleRadio1">
+                    <i class="far fa-circle not-checked"></i>
+                    <i class="far fa-check-circle checked"></i>
+                </label>    
+                <label class="form-check-label pl-3 pr-4" for="exampleRadio1">Option1</label>
+                <label class="custom-checkbox" for="exampleRadio2">
+                    <input name="sss" type="radio" class="form-check-input" id="exampleRadio2">
+                    <i class="far fa-circle not-checked"></i>
+                    <i class="far fa-check-circle checked"></i>
+                </label>    
+                <label class="form-check-label pl-3 pr-4" for="exampleRadio2">Option2</label>
+                <label class="custom-checkbox" for="exampleRadio3">
+                    <input name="sss" type="radio" class="form-check-input" id="exampleRadio3">
+                    <i class="far fa-circle not-checked"></i>
+                    <i class="far fa-check-circle checked"></i>
+                </label>    
+                <label class="form-check-label pl-3" for="exampleRadio3">Option3</label>
+            </div>
+        </div>        
+    </div>  
+
+    <div class="d-flex justify-content-center align-items-center pt-3">
+        <button class="custom-button mx-2" type="button"><i class="fas fa-chevron-circle-left mr-3"></i>Previous</button>
+        <button class="custom-button mx-2 submit" type="submit">Next<i class="fas fa-chevron-circle-right ml-3"></i></button>
+    </div>
+
+</div>

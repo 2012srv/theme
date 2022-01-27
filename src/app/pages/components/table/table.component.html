@@ -1,0 +1,126 @@
+<div class="row gutters-5">
+    <div class="col-5">
+        <input class="form-control full-width" autocomplete="off" type="text" name="searchTerm" placeholder="Search..." [(ngModel)]="service.searchTerm" />
+    </div>
+    <div class="col flex-grow-1 d-flex align-items-center">
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    <div class="col-3 d-flex">
+        <div class="flex-grow-1"></div>
+        <ng-select class="custom-ng-select" [(ngModel)]="service.pageSize">
+            <ng-option *ngFor="let page of pageSizeOpt" [value]="page.value">{{page.label}}</ng-option>
+        </ng-select>
+    </div>
+</div>
+
+<ng-container *ngIf="classLabel == 'custom-table-1'">
+    <table class="table mt-3" [class]="classLabel">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" sortable="name" (sort)="onSort($event)">Country</th>
+                <th scope="col" sortable="area" (sort)="onSort($event)">Area</th>
+                <th scope="col" sortable="population" (sort)="onSort($event)">Population</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of countries$ | async">
+                <td scope="row">{{ country.id }}</td>
+                <td>
+                    <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+                    <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight>
+                </td>
+                <td style="width: 60px;" class="text-center">
+                    <div class="dropdown d-inline-block user-dropdown" ngbDropdown placement="bottom-right">
+                        <button type="button" ngbDropdownToggle class="waves-effect px-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+    
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <!-- item-->
+                            <a class="dropdown-item" href="javascript: void(0);">
+                                <i class="far fa-edit mr-2"></i>
+                                Edit Project
+                            </a>
+                            <a class="dropdown-item d-block" href="javascript: void(0);">
+                                <i class="fas fa-cog mr-2"></i>
+                                Settings
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+<ng-container *ngIf="classLabel == 'custom-table-2'">
+    <table class="table mt-4" [class]="classLabel">
+        <!-- <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" sortable="name" (sort)="onSort($event)">Country</th>
+                <th scope="col" sortable="area" (sort)="onSort($event)">Area</th>
+                <th scope="col" sortable="population" (sort)="onSort($event)">Population</th>
+                <th scope="col" style="width: 60px;">Action</th>
+            </tr>
+        </thead> -->
+        <tbody>
+            <tr *ngFor="let country of countries$ | async">
+                <td scope="row" style="width: 60px;">
+                    <span class="cell-box"><img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"></span>
+                    <!-- {{ country.id }} -->
+                </td>
+                <td>
+                    <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                    <span class="label">Country</span>
+                </td>
+                <td>
+                    <ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight>
+                    <span class="label">Area</span>
+                </td>
+                <td>
+                    <ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight>
+                    <span class="label">Population</span>
+                </td>
+                <td style="width: 60px;" class="text-right">
+                    <div class="dropdown d-inline-block user-dropdown" ngbDropdown placement="bottom-right">
+                        <button type="button" ngbDropdownToggle class="waves-effect px-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+    
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <!-- item-->
+                            <a class="dropdown-item" href="javascript: void(0);">
+                                <i class="far fa-edit mr-2"></i>
+                                Edit Project
+                            </a>
+                            <a class="dropdown-item d-block" href="javascript: void(0);">
+                                <i class="fas fa-cog mr-2"></i>
+                                Settings
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+
+
+<div class="d-flex justify-content-center">
+    <!-- <ngb-pagination class="custom-navigation" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination> -->
+    <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [maxSize]="3" [rotate]="true" [pageSize]="service.pageSize" [boundaryLinks]="true"></ngb-pagination>
+    <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [maxSize]="3" [rotate]="true" [pageSize]="service.pageSize" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination> -->
+    <!-- <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option value="2">2 items per page</option>
+        <option value="4">4 items per page</option>
+        <option value="6">6 items per page</option>
+    </select> -->
+</div>
